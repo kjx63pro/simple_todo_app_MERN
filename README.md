@@ -1,10 +1,8 @@
-# Simple Todo App with React (MERN)
+# Simple Todo App with React (MERN full Stack App)
 
 This app is a very simple todo app with React.js.
-
 The Context API and useReducer are used for state management.
-
-⭐️In addition, the data is stored in the MongoDB.
+⭐️ In addition, the data is stored in the MongoDB.
 
 (The original version (app-level state management) can be found in [Simple Todo App with React hooks](https://github.com/kjx63pro/simple_todo_app_with_react_hooks))
 
@@ -28,8 +26,6 @@ Connect to MongoDB
   {
   "mongoURI": "<Your connection string>"
 }
-
-
 
 ```
 
@@ -55,7 +51,7 @@ Connect to MongoDB
 - Delete Todo
 - Complete Todo (Line-through)
 - Navigation to Browse different routes (Navbar with React Bootstrap)
--
+- ⭐️ Store Todo Data to the MongoDB
 
 ## Who this app is for
 
