@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
     res.json(todos);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
@@ -25,7 +26,20 @@ router.post('/', async (req, res) => {
     res.json(newTodo);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
+// @route     DELETE api/todos/:id
+// @desc      Create NEW Todo
+// @access    Public
+router.delete('/:id', async (req, res) => {
+  try {
+    await Todo.findByIdAndRemove(req.params.id);
+    res.json('Todo Deleted');
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 module.exports = router;
