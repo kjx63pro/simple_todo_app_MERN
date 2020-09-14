@@ -17,8 +17,7 @@ Install all npm pachages used in this app
 $ npm install
 
 - Also in the client folder
-$ cd client
-$ npm install
+$ npm run clientinstall
 
 Connect to MongoDB
   - Create a file "default.json" in the config file
@@ -26,6 +25,9 @@ Connect to MongoDB
   {
   "mongoURI": "<Your connection string>"
 }
+
+Run frontend & backend server
+$ npm run dev
 
 ```
 
