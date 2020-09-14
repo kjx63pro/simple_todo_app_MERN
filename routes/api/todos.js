@@ -30,6 +30,22 @@ router.post('/', async (req, res) => {
   }
 });
 
+// @route     PUT api/todos/:id
+// @desc      Update Todo
+// @access    Public
+router.put('/:id', async (req, res) => {
+  try {
+    const updateTodo = await Todo.findById(req.params.id);
+    await Todo.findByIdAndUpdate(req.params.id, {
+      isCompleted: !updateTodo.isCompleted,
+    });
+    res.json(updateTodo);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route     DELETE api/todos/:id
 // @desc      Create NEW Todo
 // @access    Public
@@ -42,4 +58,5 @@ router.delete('/:id', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
 module.exports = router;
