@@ -15,4 +15,17 @@ router.get('/', async (req, res) => {
   }
 });
 
+// @route     POST api/todos
+// @desc      Create NEW Todo
+// @access    Public
+router.post('/', async (req, res) => {
+  try {
+    const { text, isCompleted } = req.body;
+    const newTodo = await Todo.create({ text, isCompleted });
+    res.json(newTodo);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 module.exports = router;
