@@ -22,6 +22,15 @@ $ npm install
 $ cd client
 $ npm install
 
+Connect to MongoDB
+  - Create a file "default.json" in the config file
+  - In the default.json file, paste your connection string from mongoDB atlas in <Your conneciton string>
+  {
+  "mongoURI": "<Your connection string>"
+}
+
+
+
 ```
 
 ## Some of the screen shots of this app
