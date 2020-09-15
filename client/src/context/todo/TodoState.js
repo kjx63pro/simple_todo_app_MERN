@@ -39,7 +39,12 @@ const TodoState = (props) => {
     }
   };
 
-  const deleteTodo = (id) => {
+  const deleteTodo = async (id) => {
+    try {
+      await axios.delete(`/api/todos/${id}`);
+    } catch (err) {
+      console.error(err.message);
+    }
     dispatch({
       type: DELETE_TODO,
       payload: id,

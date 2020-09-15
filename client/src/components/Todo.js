@@ -25,15 +25,15 @@ const Todo = () => {
             <div className='todo__list' key={index}>
               <p
                 className={todo.isCompleted ? 'todo__isCompleted' : ''}
-                onClick={() => {
-                  todoContext.completeTodo(index);
-                }}
+                // onClick={() => {
+                //   todoContext.completeTodo(index);
+                // }}
               >
                 {todo.text}
               </p>
               <div className='todo__button'>
                 <Button
-                  onClick={() => todoContext.deleteTodo(index)}
+                  onClick={() => todoContext.deleteTodo(todo._id)}
                   variant='contained'
                   color='secondary'
                 >
