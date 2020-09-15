@@ -29,8 +29,7 @@ export default (state, action) => {
       };
 
     case COMPLETE_TODO:
-      const completeTodo = state.todos.find((t) => t.id === action.payload);
-
+      const completeTodo = state.todos.find((t) => t._id === action.payload);
       completeTodo.isCompleted = !completeTodo.isCompleted;
       return {
         ...state,

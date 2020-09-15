@@ -8,6 +8,7 @@ const Todo = () => {
   const todoContext = useContext(TodoContext);
   useEffect(() => {
     todoContext.getTodos();
+    // eslint-disable-next-line
   }, []);
   return (
     <div className='todo'>
@@ -25,9 +26,9 @@ const Todo = () => {
             <div className='todo__list' key={index}>
               <p
                 className={todo.isCompleted ? 'todo__isCompleted' : ''}
-                // onClick={() => {
-                //   todoContext.completeTodo(index);
-                // }}
+                onClick={() => {
+                  todoContext.completeTodo(todo._id);
+                }}
               >
                 {todo.text}
               </p>
