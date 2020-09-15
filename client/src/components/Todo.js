@@ -3,6 +3,7 @@ import './Todo.css';
 import TodoContext from '../context/todo/TodoContex';
 
 import { Button } from '@material-ui/core';
+import Spinner from './layout/Spinner';
 
 const Todo = () => {
   const todoContext = useContext(TodoContext);
@@ -14,7 +15,7 @@ const Todo = () => {
   return (
     <Fragment>
       {todoContext.loading ? (
-        <p>Loading...</p>
+        <Spinner />
       ) : (
         <div className='todo'>
           {todoContext.todos?.length === 0 ? (
