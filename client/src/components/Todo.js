@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, Fragment } from 'react';
 import './Todo.css';
 import TodoContext from '../context/todo/TodoContex';
 
@@ -10,42 +10,49 @@ const Todo = () => {
     todoContext.getTodos();
     // eslint-disable-next-line
   }, []);
+
   return (
-    <div className='todo'>
-      {todoContext.todos?.length === 0 ? (
-        <div className='todo__whenNothingtoList'>
-          <p>
-            There is no Todo at the moment.
-            <br />
-            Please Add New Todo...
-          </p>
-        </div>
+    <Fragment>
+      {todoContext.loading ? (
+        <p>Loading...</p>
       ) : (
-        <div>
-          {todoContext.todos?.map((todo, index) => (
-            <div className='todo__list' key={index}>
-              <p
-                className={todo.isCompleted ? 'todo__isCompleted' : ''}
-                onClick={() => {
-                  todoContext.completeTodo(todo._id);
-                }}
-              >
-                {todo.text}
+        <div className='todo'>
+          {todoContext.todos?.length === 0 ? (
+            <div className='todo__whenNothingtoList'>
+              <p>
+                There is no Todo at the moment.
+                <br />
+                Please Add New Todo...
               </p>
-              <div className='todo__button'>
-                <Button
-                  onClick={() => todoContext.deleteTodo(todo._id)}
-                  variant='contained'
-                  color='secondary'
-                >
-                  Delete
-                </Button>
-              </div>
             </div>
-          ))}
+          ) : (
+            <div>
+              {todoContext.todos?.map((todo, index) => (
+                <div className='todo__list' key={index}>
+                  <p
+                    className={todo.isCompleted ? 'todo__isCompleted' : ''}
+                    onClick={() => {
+                      todoContext.completeTodo(todo._id);
+                    }}
+                  >
+                    {todo.text}
+                  </p>
+                  <div className='todo__button'>
+                    <Button
+                      onClick={() => todoContext.deleteTodo(todo._id)}
+                      variant='contained'
+                      color='secondary'
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </Fragment>
   );
 };
 

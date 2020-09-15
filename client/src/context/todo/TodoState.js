@@ -20,6 +20,7 @@ const TodoState = (props) => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
   const getTodos = async (todos) => {
+    setTodosLoading();
     const res = await axios.get('/api/todos', todos);
     dispatch({ type: GET_TODOS, payload: res.data });
   };
