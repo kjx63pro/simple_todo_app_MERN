@@ -11,6 +11,7 @@ export default (state, action) => {
     case GET_TODOS:
       return {
         ...state,
+        loading: false,
         todos: action.payload,
       };
 

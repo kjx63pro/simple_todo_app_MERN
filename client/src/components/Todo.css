@@ -1,6 +1,6 @@
 .todo {
   padding: 20px;
-  width: 70%;
+  width: 80%;
 }
 
 .todo__list {
@@ -10,6 +10,8 @@
 }
 
 .todo__list > p {
+  margin-top: auto;
+  margin-bottom: auto;
   margin-right: 20px;
   flex: 1;
 }
