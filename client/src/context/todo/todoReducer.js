@@ -1,18 +1,23 @@
-import { ADD_TODO, DELETE_TODO, COMPLETE_TODO } from '../types';
+import {
+  GET_TODOS,
+  ADD_TODO,
+  DELETE_TODO,
+  COMPLETE_TODO,
+  TODOS_LOADING,
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_TODOS:
+      return {
+        ...state,
+        todos: action.payload,
+      };
+
     case ADD_TODO:
       return {
         ...state,
-        todos: [
-          ...state.todos,
-          {
-            id: state.todos.length,
-            text: action.payload,
-            isCompleted: false,
-          },
-        ],
+        todos: [action.payload, ...state.todos],
       };
 
     case DELETE_TODO:
@@ -31,7 +36,11 @@ export default (state, action) => {
         ...state,
         todos: [...state.todos],
       };
-
+    case TODOS_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     default:
       return state;
   }

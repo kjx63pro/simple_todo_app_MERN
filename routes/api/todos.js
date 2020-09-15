@@ -21,8 +21,8 @@ router.get('/', async (req, res) => {
 // @access    Public
 router.post('/', async (req, res) => {
   try {
-    const { text, isCompleted } = req.body;
-    const newTodo = await Todo.create({ text, isCompleted });
+    let { text } = req.body;
+    const newTodo = await Todo.create({ text });
     res.json(newTodo);
   } catch (err) {
     console.error(err.message);

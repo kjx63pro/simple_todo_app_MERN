@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Todo.css';
 import TodoContext from '../context/todo/TodoContex';
 
@@ -6,6 +6,9 @@ import { Button } from '@material-ui/core';
 
 const Todo = () => {
   const todoContext = useContext(TodoContext);
+  useEffect(() => {
+    todoContext.getTodos();
+  }, []);
   return (
     <div className='todo'>
       {todoContext.todos?.length === 0 ? (

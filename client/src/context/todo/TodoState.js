@@ -1,18 +1,42 @@
 import React, { useReducer } from 'react';
+import axios from 'axios';
 import TodoContext from './TodoContex';
 import todoReducer from './todoReducer';
 
-import { ADD_TODO, DELETE_TODO, COMPLETE_TODO } from '../types';
+import {
+  GET_TODOS,
+  ADD_TODO,
+  DELETE_TODO,
+  COMPLETE_TODO,
+  TODOS_LOADING,
+} from '../types';
 
 const TodoState = (props) => {
   const initialState = {
     todos: [],
+    loading: false,
   };
 
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
-  const addTodo = (newTodo) => {
-    dispatch({ type: ADD_TODO, payload: newTodo });
+  const getTodos = async (todos) => {
+    const res = await axios.get('/api/todos', todos);
+    dispatch({ type: GET_TODOS, payload: res.data });
+  };
+
+  const addTodo = async (newTodo) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    try {
+      const res = await axios.post('/api/todos', { text: newTodo }, config);
+      dispatch({ type: ADD_TODO, payload: res.data });
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   const deleteTodo = (id) => {
@@ -29,13 +53,22 @@ const TodoState = (props) => {
     });
   };
 
+  const setTodosLoading = () => {
+    dispatch({
+      type: TODOS_LOADING,
+    });
+  };
+
   return (
     <TodoContext.Provider
       value={{
         todos: state.todos,
+        loading: state.loading,
+        getTodos,
         addTodo,
         deleteTodo,
         completeTodo,
+        setTodosLoading,
       }}
     >
       {props.children}

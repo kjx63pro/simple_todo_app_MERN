@@ -7,11 +7,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 connectDB();
-
-app.get('/', (req, res) => {
-  res.json({ msg: 'Welcome to the Todo App with Backend...' });
-});
-
 // Define Routes
 app.use('/api/todos', require('./routes/api/todos'));
 
